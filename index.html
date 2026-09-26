@@ -7,6 +7,42 @@ main{width:min(750px,92vw);margin:auto;padding:70px 0 100px}.eyebrow{font-size:1
 .rankbtn{display:block;margin:30px auto;padding:14px 24px;border:1px solid #ffd96b70;border-radius:14px;background:#33260d;color:#ffe89d;font-weight:900;cursor:pointer}.rank{display:none;text-align:center}.rank.show{display:block;animation:slam .7s cubic-bezier(.2,.9,.2,1.25)}.rank img{width:min(430px,94%);border-radius:20px;filter:drop-shadow(0 0 35px #ffc23b55)}.rank strong{display:block;color:#ffe89d;font-size:19px}@keyframes slam{0%{opacity:0;transform:scale(.2) translateY(-100px)}60%{opacity:1;transform:scale(1.12)}100%{transform:scale(1)}}
 .burst{position:fixed;z-index:30;inset:0;pointer-events:none;overflow:hidden}.p{position:fixed;opacity:0;animation:pop 1.5s ease-out forwards;color:#ffe27c;text-shadow:0 0 9px #ffb72b}@keyframes pop{10%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1.4)}}.flash{position:fixed;z-index:29;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle,#fff8bd,#ffc83b55 18%,transparent 55%)}.flash.go{animation:f .65s}@keyframes f{30%{opacity:1}100%{opacity:0}}
 .joke{text-align:center;margin:35px 0}.joke b{display:block;font-size:18px}.photo{margin:28px 0;border-radius:20px;overflow:hidden;border:1px solid #ffffff16}.photo img{display:block;width:100%;max-height:650px;object-fit:cover}.cap{text-align:center;color:#aa969d;font-size:12px;padding:9px}.snaps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 30px}.snaps img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}.end{text-align:center;margin-top:45px;padding:28px 16px;border-radius:20px;background:#8e173b16}.reveal{opacity:0;transform:translateY(18px);filter:blur(4px);transition:.7s}.reveal.on{opacity:1;transform:none;filter:none}.progress{position:fixed;z-index:40;top:0;left:0;height:2px;background:#ff668e;width:0}
+
+.photo.practice{
+  margin-top:2.1rem;
+  box-shadow:0 22px 70px #0008,0 0 36px rgba(216,58,97,.09);
+}
+.photo.practice img{
+  max-height:none;
+  aspect-ratio:3/2;
+  object-fit:cover;
+}
+.photo.practice .cap{
+  background:linear-gradient(90deg,rgba(142,23,59,.13),rgba(255,255,255,.02),rgba(142,23,59,.13));
+  color:#cdb0ba;
+}
+
+
+.music-card{margin:28px 0;padding:18px;border:1px solid #ffffff18;border-radius:20px;background:linear-gradient(135deg,#161722,#21121a);cursor:pointer;transition:.25s;overflow:hidden;position:relative}
+.music-card:hover{transform:translateY(-2px)}.music-card.playing{border-color:#d85b7d88;box-shadow:0 0 30px #d83a6122}
+.music-top{display:flex;gap:14px;align-items:center}.album{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#352a35 0 19%,#0c0d12 20% 48%,#2d1820 49% 51%,#101117 52%);font-size:22px;flex:0 0 auto}.playing .album{animation:spin 5s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.track{min-width:0}.track small{color:#d97b96;letter-spacing:.13em}.track b{display:block;font-size:18px}.track span{color:#aa969d;font-size:13px}.musicbar{height:4px;margin:15px 0 8px;background:#ffffff12;border-radius:99px;overflow:hidden}.musicbar i{display:block;width:28%;height:100%;background:#d85b7d;border-radius:99px;transition:width 3s linear}.playing .musicbar i{width:78%}.music-hint{text-align:right;color:#8e7d84;font-size:11px}.notes{position:absolute;inset:0;pointer-events:none}.note-pop{position:absolute;right:22px;bottom:12px;animation:noteup 1.3s ease-out forwards;color:#f3a4ba}@keyframes noteup{to{opacity:0;transform:translate(var(--nx),-70px) rotate(18deg)}}
+.meat-card{margin:28px 0;padding:20px;text-align:center;border-radius:18px;background:#ffffff08;border:1px dashed #ffffff22}.meat-card strong{display:block;font-size:19px;margin:7px 0}.tiny{font-size:12px;color:#9e8991}
+
+
+.photo.celebration{
+  margin:2rem 0 2.25rem;
+  box-shadow:0 22px 72px #0009,0 0 38px rgba(255,199,74,.11);
+}
+.photo.celebration img{
+  max-height:none;
+  aspect-ratio:3/2;
+  object-fit:cover;
+}
+.photo.celebration .cap{
+  background:linear-gradient(90deg,rgba(92,64,12,.20),rgba(255,255,255,.02),rgba(92,64,12,.20));
+  color:#dfc98f;
+}
+
 </style><script>if("scrollRestoration"in history)history.scrollRestoration="manual";scrollTo(0,0)</script></head>
 <body class="lock"><div class="progress" id="prog"></div><div class="burst" id="burst"></div><div class="flash" id="flash"></div>
 <div class="intro" id="intro"><div class="note" id="note"><div class="new">1 NEW REPLY</div><b>From. 하늘길</b><div>루체리의 답장에 답장이 도착했습니다 🍓</div><div class="open">답장 열어보기</div></div></div>
@@ -17,14 +53,58 @@ main{width:min(750px,92vw);margin:auto;padding:70px 0 100px}.eyebrow{font-size:1
 <div class="divider reveal">09.24 · 증명의 날</div><div class="day reveal">골드4 → <em>골드3</em></div>
 <div class="mission reveal"><b>MISSION</b><br>지정된 시간까지 골드3 승급.<br><small>실패 시 09.25 · 24시간 노방종 예정 💀</small></div>
 <p class="reveal">좋은 팀원들을 만난 판도 있었지만, 그것만으로 올라간 건 아니라고 생각해.</p><p class="reveal">계속 열심히 했고 잘한 판도 많았고, 결국 루체리가 자기 몫을 해냈으니까 골드3까지 올라간 거잖아.</p><p class="reveal">그래서 마지막에 진짜 증명해냈을 때는 나도 괜히 기분 좋더라.</p>
+
+<div class="photo celebration reveal">
+  <img src="ruchel-gold3-celebration.png" alt="골드 III 승급을 기뻐하는 루체리">
+  <div class="cap">09.24 · 증명의 날 — 결국 해냈네 루체리 🍓🏆</div>
+</div>
+
 <button class="rankbtn reveal" id="rankbtn">승급 결과 확인 ✦</button><div class="rank" id="rank"><img src="gold3.png"><strong>증명의 날 — 증명 완료. 🍓♥️</strong></div>
 <div class="joke reveal">솔직히 골골이 입장에서는...<b>24시간 노방종이 사라진 게 아주 조금 아쉽...</b><br>아닙니다.<br>축하드립니다 루체리. 💀ㅋㅋㅋㅋ</div>
 <div class="divider reveal">09.25 · 한복 그리고 절망전</div><div class="photo reveal"><img src="hanbok.png"><div class="cap">추석이라고 한복 입고 나타난 루체리 🍓</div></div>
-<p class="reveal"><b>한복 루체리 예쁘더라.</b><br>증명 끝내고 다음 날 갑자기 저렇게 나타나는 건 뭐야 ㅋㅋㅋㅋ</p><div class="snaps reveal"><img src="snap.png"><img src="closeup.png"></div>
-<p class="reveal">그리고 절망전에도 뽑혔고.</p><p class="reveal">원래도 원딜인 루체리가 이번에는 절망전이라는 목표까지 생겼으니까 한동안 롤 하는 모습 많이 보게 되겠네.</p><p class="reveal">연습하면서 잘 풀리는 날도 있고 안 풀리는 날도 있겠지만, 결과만 보는 것보다 그렇게 맞춰가고 연습하는 과정 보는 것도 나는 좋아해.</p><p class="reveal">그러니까 너무 부담 갖지는 말고 열심히 해봐.<br><b>원딜 루체리 응원하고 있을게 🍓</b></p>
+<p class="reveal"><b>한복 루체리 예쁘더라.</b><br>증명 끝내고 다음 날 갑자기 저렇게 나타나는 건 뭐야 ㅋㅋㅋㅋ</p><p class="reveal">그리고 절망전에도 뽑혔고.</p>
+<p class="reveal">원래도 원딜인 루체리가 이번에는 절망전이라는 목표까지 생겼으니까 한동안 롤 하는 모습 많이 보게 되겠네.</p>
+
+<div class="photo practice reveal">
+  <img src="ruchel-adc-practice.png" alt="절망전을 준비하며 원딜 연습 중인 루체리">
+  <div class="cap">절망전 준비 중 · 원딜 루체리 집중 모드 🎧🍓</div>
+</div>
+
+<p class="reveal">연습하면서 잘 풀리는 날도 있고 안 풀리는 날도 있겠지만, 결과만 보는 것보다 그렇게 맞춰가고 연습하는 과정 보는 것도 나는 좋아해.</p>
+<p class="reveal">그러니까 너무 부담 갖지는 말고 열심히 해봐.<br><b>원딜 루체리 응원하고 있을게 🍓</b></p>
 <div class="divider reveal">RE: 루체리의 답장</div><p class="reveal">근데 방송 얘기하다가 잠깐 딴 데로 샜네 ㅋㅋㅋ<br>원래 이거 루체리가 남긴 답장에 대한 답장이었는데.</p>
 <div class="quote reveal"><small>FROM RUCHEL 🍓</small><b>나도 하늘님에 대해서 하나 알아갔다!</b></div>
 <p class="reveal">내가 친해지면 말 많아지고 장난도 많아진다고 한 거, 루체리도 비슷하다고 하니까 왠지 이해되는 게 있더라.</p><p class="reveal">나도 요즘 방송 보면서 처음보다 진짜 많이 편해졌다는 생각이 들거든. 처음에는 그냥 보고 웃는 쪽이었다면 요즘은 나도 같이 장난치고 싶고, 이것저것 말해주고 싶고 ㅋㅋㅋ</p><p class="reveal">루체리가 말한 것처럼 서로 조금씩 알아가는 중인가 봐 ♥️</p>
+
+<div class="divider reveal">루체리가 알려준 최애곡 🎧</div>
+<p class="reveal">그리고 루체리가 말한 최애 노래, <b>카타오모이 - 다즈비.</b></p>
+<p class="reveal">궁금해서 검색해서 들어봤거든?</p>
+<p class="reveal"><b>근데 틀자마자 “어? 나 이거 들어본 적 있는데?” 이랬음 ㅋㅋㅋㅋ</b></p>
+<p class="reveal">제목까지 기억하고 있던 노래는 아니었는데 익숙하더라. 다시 제대로 들어보니까 좋은 노래 맞네 🍓</p>
+
+<div class="music-card reveal" id="musicCard" role="button" tabindex="0" aria-label="카타오모이 음악 카드">
+ <div class="notes" id="notes"></div>
+ <div class="music-top"><div class="album">🎧</div><div class="track"><small>NOW LISTENING</small><b>カタオモイ · 카타오모이</b><span>DAZBEE · 루체리가 알려준 최애곡 🍓</span></div></div>
+ <div class="musicbar"><i></i></div><div class="music-hint">카드를 눌러봐 ♪</div>
+</div>
+
+<p class="reveal">나도 음악은 딱히 장르 정해놓고 듣는 편은 아니라서 이것저것 다 듣는 편이야. 그냥 듣다가 내 귀에 꽂히면 장르 상관없이 계속 듣는 타입 ㅋㅋㅋ</p>
+<p class="reveal">루체리는 가사가 너무 예쁘고, 커버한 다즈비 목소리도 아름다워서 좋아한다고 했잖아. 그 말 듣고 다시 들어보니까 왜 좋아하는지도 조금 알 것 같더라.</p>
+<p class="reveal">근데 말 나온 김에 하나 얘기하자면...</p>
+<div class="quote reveal"><small>하늘길 개인 의견 🍓</small><b>루체리 목소리도 충분히 예쁘고 좋아.</b></div>
+<p class="reveal">방송하다가 가끔 애교 부리면 골골이들이 막 뭐라고 할 때 있잖아? 💀ㅋㅋㅋㅋ<br>솔직히 나는 그럴 때 속으로 <b>“아니... 그냥 귀여운데?”</b> 하고 보고 있었음.</p>
+<p class="reveal">이건 골골이 여론과 무관한 하늘길 개인 의견입니다. 🍓ㅋㅋㅋ</p>
+<p class="reveal">그러니까 루체리가 카타오모이 부르면 어떤 느낌일지도 궁금해졌어. 다즈비 커버가 다즈비 목소리라서 좋았던 것처럼, <b>루체리가 부르면 또 루체리 목소리라서 좋은 카타오모이가 되지 않을까.</b></p>
+<p class="reveal"><b>루체리 카타오모이 커버, 기대하고 있을게 ♥️</b></p>
+
+<div class="divider reveal">그리고 샤브샤브 얘기 💀</div>
+<p class="reveal">아 그리고 잠깐.</p>
+<p class="reveal">내가 샤브샤브 가면 고기보다 채소를 계속 가져온다고 했더니...</p>
+<div class="meat-card reveal"><span class="tiny">FROM RUCHEL</span><strong>“그럼 고기는 내꺼네 ❤️”</strong><span>......</span></div>
+<p class="reveal"><b>고기 많이 좋아하는구나 루체리.</b><br>오케이 확인. 💀ㅋㅋㅋㅋ</p>
+<p class="reveal">다음에 샤브샤브 얘기 나오면 나는 채소 담당, 루체리는 고기 담당인 걸로 하겠습니다.</p>
+<p class="reveal">또 하나 알아버렸네.<br><b>오늘도 새로운 것을 알게 되었네요. 🍓ㅋㅋㅋㅋ</b></p>
+
 <div class="end reveal">루체리가 매일매일 보자고 했으니까<br>나도 계속 보러 갈게.<br><br>방송에서 새로운 모습도 보고,<br>이렇게 서로 모르는 것도 하나씩 알아가고.<br><br><b>그러니까 나도 계속 루체리 하나씩 알아갈 테니까<br>루체리도 계속 나 하나씩 알아가 봐 🍓♥️</b><br><br><small>오늘 새롭게 알게 된 것</small><br><b>루체리는 뿡뿡뿡뿡뿡에 생각보다 많은 것을 기대하고 있었다.</b><br>💀<br><br>오늘도 새로운 것을 알게 되었네요.</div>
 </article></main>
 <script>
@@ -32,4 +112,9 @@ const intro=document.getElementById('intro');document.getElementById('note').onc
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 onscroll=()=>{let d=document.documentElement;document.getElementById('prog').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'};
 let played=false;document.getElementById('rankbtn').onclick=function(){if(played)return;played=true;this.style.opacity=.4;let rank=document.getElementById('rank');rank.classList.add('show');let flash=document.getElementById('flash');flash.classList.add('go');let b=document.getElementById('burst'),sy=['✦','★','◆','✧','🍓','♥'];for(let i=0;i<54;i++){let e=document.createElement('span');e.className='p';e.textContent=sy[i%sy.length];e.style.left='50%';e.style.top='50%';let a=Math.PI*2*i/54,d=120+Math.random()*300;e.style.setProperty('--x',Math.cos(a)*d+'px');e.style.setProperty('--y',Math.sin(a)*d+'px');e.style.setProperty('--r',(Math.random()*500-250)+'deg');e.style.fontSize=(12+Math.random()*18)+'px';b.appendChild(e);setTimeout(()=>e.remove(),1800)}if(navigator.vibrate)navigator.vibrate([30,30,60]);setTimeout(()=>rank.scrollIntoView({behavior:'smooth',block:'center'}),120)}
+
+const mc=document.getElementById('musicCard'),notes=document.getElementById('notes');
+function musicTap(){mc.classList.toggle('playing');if(mc.classList.contains('playing')){['♪','♫','♥','♪','🍓'].forEach((x,i)=>{let n=document.createElement('span');n.className='note-pop';n.textContent=x;n.style.setProperty('--nx',(i*15-30)+'px');n.style.animationDelay=(i*.08)+'s';notes.appendChild(n);setTimeout(()=>n.remove(),1600)})}}
+mc.addEventListener('click',musicTap);mc.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();musicTap()}});
+
 </script></body></html>
