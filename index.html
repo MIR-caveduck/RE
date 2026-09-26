@@ -58,6 +58,12 @@ main{width:min(750px,92vw);margin:auto;padding:70px 0 100px}.eyebrow{font-size:1
   color:#d5b5bf;
 }
 
+
+.player-row{display:flex;align-items:center;gap:12px;margin-top:15px}
+.playbtn,.mutebtn{border:1px solid #ffffff1f;background:#ffffff0b;color:#f5dbe2;border-radius:50%;width:42px;height:42px;display:grid;place-items:center;cursor:pointer;flex:0 0 auto;font-size:14px}
+.playbtn:hover,.mutebtn:hover{background:#ffffff14}.seek-wrap{flex:1;min-width:0}.seek,.volume{accent-color:#d85b7d;cursor:pointer}.seek{width:100%}.times{display:flex;justify-content:space-between;color:#8f7e85;font-size:10px;margin-top:1px}.vol-wrap{display:flex;align-items:center;gap:7px}.volume{width:80px}.music-card.paused .album{animation-play-state:paused}.music-card.playing .album{animation:spin 5s linear infinite}
+@media(max-width:520px){.player-row{gap:8px}.volume{width:55px}.playbtn,.mutebtn{width:38px;height:38px}}
+
 </style><script>if("scrollRestoration"in history)history.scrollRestoration="manual";scrollTo(0,0)</script></head>
 <body class="lock"><div class="progress" id="prog"></div><div class="burst" id="burst"></div><div class="flash" id="flash"></div>
 <div class="intro" id="intro"><div class="note" id="note"><div class="new">1 NEW REPLY</div><b>From. 하늘길</b><div>루체리의 답장에 답장이 도착했습니다 🍓</div><div class="open">답장 열어보기</div></div></div>
@@ -97,10 +103,24 @@ main{width:min(750px,92vw);margin:auto;padding:70px 0 100px}.eyebrow{font-size:1
 <p class="reveal"><b>근데 틀자마자 “어? 나 이거 들어본 적 있는데?” 이랬음 ㅋㅋㅋㅋ</b></p>
 <p class="reveal">제목까지 기억하고 있던 노래는 아니었는데 익숙하더라. 다시 제대로 들어보니까 좋은 노래 맞네 🍓</p>
 
-<div class="music-card reveal" id="musicCard" role="button" tabindex="0" aria-label="카타오모이 음악 카드">
- <div class="notes" id="notes"></div>
- <div class="music-top"><div class="album">🎧</div><div class="track"><small>NOW LISTENING</small><b>カタオモイ · 카타오모이</b><span>DAZBEE · 루체리가 알려준 최애곡 🍓</span></div></div>
- <div class="musicbar"><i></i></div><div class="music-hint">카드를 눌러봐 ♪</div>
+<div class="music-card reveal playing" id="musicCard">
+ <audio id="kataAudio" src="kataomoi.mp3" preload="auto" loop></audio>
+ <div class="music-top">
+   <div class="album" id="albumDisc">🎧</div>
+   <div class="track"><small>NOW LISTENING</small><b>カタオモイ · 카타오모이</b><span>DAZBEE · 루체리가 알려준 최애곡 🍓</span></div>
+ </div>
+ <div class="player-row">
+   <button type="button" class="playbtn" id="playBtn" aria-label="재생 또는 일시정지">❚❚</button>
+   <div class="seek-wrap">
+     <input id="seekBar" class="seek" type="range" min="0" max="1000" value="0" aria-label="재생 위치">
+     <div class="times"><span id="curTime">0:00</span><span id="durTime">0:00</span></div>
+   </div>
+   <div class="vol-wrap">
+     <button type="button" class="mutebtn" id="muteBtn" aria-label="음소거">🔊</button>
+     <input id="volumeBar" class="volume" type="range" min="0" max="1" step="0.01" value="0.55" aria-label="음량">
+   </div>
+ </div>
+ <div class="music-hint" id="audioStatus">편지를 열면 음악이 시작돼 ♪</div>
 </div>
 
 <p class="reveal">나도 음악은 딱히 장르 정해놓고 듣는 편은 아니라서 이것저것 다 듣는 편이야. 그냥 듣다가 내 귀에 꽂히면 장르 상관없이 계속 듣는 타입 ㅋㅋㅋ</p>
@@ -139,13 +159,58 @@ main{width:min(750px,92vw);margin:auto;padding:70px 0 100px}.eyebrow{font-size:1
 <div class="end reveal">루체리가 매일매일 보자고 했으니까<br>나도 계속 보러 갈게.<br><br>방송에서 새로운 모습도 보고,<br>이렇게 서로 모르는 것도 하나씩 알아가고.<br><br><b>그러니까 나도 계속 루체리 하나씩 알아갈 테니까<br>루체리도 계속 나 하나씩 알아가 봐 🍓♥️</b><br><br><small>오늘 새롭게 알게 된 것</small><br><b>루체리는 뿡뿡뿡뿡뿡에 생각보다 많은 것을 기대하고 있었다.</b><br>💀<br><br>오늘도 새로운 것을 알게 되었네요.</div>
 </article></main>
 <script>
-const intro=document.getElementById('intro');document.getElementById('note').onclick=()=>{scrollTo(0,0);intro.classList.add('off');document.body.classList.remove('lock')};
+const intro=document.getElementById('intro');document.getElementById('note').onclick=()=>{scrollTo(0,0);intro.classList.add('off');document.body.classList.remove('lock');startLetterMusic()};
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 onscroll=()=>{let d=document.documentElement;document.getElementById('prog').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%'};
 let played=false;document.getElementById('rankbtn').onclick=function(){if(played)return;played=true;this.style.opacity=.4;let rank=document.getElementById('rank');rank.classList.add('show');let flash=document.getElementById('flash');flash.classList.add('go');let b=document.getElementById('burst'),sy=['✦','★','◆','✧','🍓','♥'];for(let i=0;i<54;i++){let e=document.createElement('span');e.className='p';e.textContent=sy[i%sy.length];e.style.left='50%';e.style.top='50%';let a=Math.PI*2*i/54,d=120+Math.random()*300;e.style.setProperty('--x',Math.cos(a)*d+'px');e.style.setProperty('--y',Math.sin(a)*d+'px');e.style.setProperty('--r',(Math.random()*500-250)+'deg');e.style.fontSize=(12+Math.random()*18)+'px';b.appendChild(e);setTimeout(()=>e.remove(),1800)}if(navigator.vibrate)navigator.vibrate([30,30,60]);setTimeout(()=>rank.scrollIntoView({behavior:'smooth',block:'center'}),120)}
 
-const mc=document.getElementById('musicCard'),notes=document.getElementById('notes');
-function musicTap(){mc.classList.toggle('playing');if(mc.classList.contains('playing')){['♪','♫','♥','♪','🍓'].forEach((x,i)=>{let n=document.createElement('span');n.className='note-pop';n.textContent=x;n.style.setProperty('--nx',(i*15-30)+'px');n.style.animationDelay=(i*.08)+'s';notes.appendChild(n);setTimeout(()=>n.remove(),1600)})}}
-mc.addEventListener('click',musicTap);mc.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();musicTap()}});
+
+const audio=document.getElementById('kataAudio');
+const playBtn=document.getElementById('playBtn');
+const seekBar=document.getElementById('seekBar');
+const volumeBar=document.getElementById('volumeBar');
+const muteBtn=document.getElementById('muteBtn');
+const audioStatus=document.getElementById('audioStatus');
+const musicCard=document.getElementById('musicCard');
+audio.volume=.55;
+
+function fmt(sec){
+  if(!Number.isFinite(sec)) return '0:00';
+  const m=Math.floor(sec/60), ss=Math.floor(sec%60);
+  return m+':'+String(ss).padStart(2,'0');
+}
+function syncPlayer(){
+  const d=audio.duration||0;
+  document.getElementById('curTime').textContent=fmt(audio.currentTime);
+  document.getElementById('durTime').textContent=fmt(d);
+  seekBar.value=d ? Math.round(audio.currentTime/d*1000) : 0;
+  playBtn.textContent=audio.paused?'▶':'❚❚';
+  musicCard.classList.toggle('paused',audio.paused);
+  musicCard.classList.toggle('playing',!audio.paused);
+  muteBtn.textContent=(audio.muted||audio.volume===0)?'🔇':'🔊';
+}
+function startLetterMusic(){
+  audio.play().then(()=>{
+    audioStatus.textContent='편지와 함께 재생 중 ♪';
+    syncPlayer();
+  }).catch(()=>{
+    audioStatus.textContent='브라우저에서 자동 재생을 막았어. ▶ 버튼을 눌러줘 ♪';
+    syncPlayer();
+  });
+}
+playBtn.addEventListener('click',()=>{
+  if(audio.paused) audio.play(); else audio.pause();
+});
+seekBar.addEventListener('input',()=>{
+  if(Number.isFinite(audio.duration)) audio.currentTime=(seekBar.value/1000)*audio.duration;
+});
+volumeBar.addEventListener('input',()=>{
+  audio.volume=Number(volumeBar.value); audio.muted=false; syncPlayer();
+});
+muteBtn.addEventListener('click',()=>{audio.muted=!audio.muted;syncPlayer()});
+audio.addEventListener('timeupdate',syncPlayer);
+audio.addEventListener('loadedmetadata',syncPlayer);
+audio.addEventListener('play',()=>{audioStatus.textContent='재생 중 ♪';syncPlayer()});
+audio.addEventListener('pause',()=>{audioStatus.textContent='잠시 멈춤';syncPlayer()});
 
 </script></body></html>
